@@ -2,13 +2,13 @@ a = [5, 4, 10, 1, 6, 2];
 console.log(a)
 const n = a.length;
 for (i = 1; i < n; i++) {
-    temp = a[i];
+    key = a[i];
     j = (i - 1);
-    while (j >= 0 && a[j] > temp) {
+    while (j >= 0 && a[j] > key) {
         a[j + 1] = a[j];
         j--;
     }
-    a[j + 1] = temp;
+    a[j + 1] = key;
     console.log('Pass: ' + i)
 }
 console.log(a)
