@@ -3,37 +3,50 @@ n = arr.length;
 ub = n-1;
 lb = 0;
 console.log(arr)
-quick_sort(arr,lb,ub);
+merge_sort(arr,lb,ub)
 console.log(arr)
 
-function quick_sort(a,lb,ub){
+function merge_sort(a,lb,ub){
     if (lb < ub){
-        loc = partition_func(a, lb, ub);
-        quick_sort(a,lb,loc-1);
-        quick_sort(a,loc+1,ub);
+        mid = Math.floor((lb + ub) /2);
+        merge_sort(a,lb,mid-1)
+        merge_sort(a,mid+1,ub)
+        arr = merge(a,lb,mid,ub);
     }
 }
 
-function partition_func(a,lb,ub) {
-    pivot = a[lb];
-    start = lb;
-    end = ub;
-    while(start < end){
-        while(a[start] <= pivot){
-            start++;
+function merge(a,lb,mid,ub){
+    i = lb;
+    j = mid + 1;
+    k = lb;
+    b = [];
+    while(i <= mid && j <= ub){
+        if (a[i] <= a[j]){
+            b[k] = a[i]
+            i++;
+        } else {
+            b[k] = a[j];
+            j++;
         }
-        while(a[end] > pivot){
-            end--;
+        k++;
+    }
+    if(i > mid){
+        while(j <= ub){
+            b[k] = a[j]
+            j++;
+            k++;
         }
-        if (start < end){
-            temp = a[start]
-            a[start] = a[end]
-            a[end] = temp
+    } else{
+        while(i <= mid) {
+            b[k] = a[i];
+            i++;
+            k++;
         }
     }
-    temp = a[lb];
-    a[lb] = a[end];
-    a[end] = temp;
-    return end;
-    
+    for(k=lb;k<=ub;k++){
+        a[k] = b[k] ;
+    }
 }
+
+// Time Complexity
+// Theta (m+n)
