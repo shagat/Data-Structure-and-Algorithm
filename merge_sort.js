@@ -8,9 +8,9 @@ console.log(arr)
 
 function merge_sort(a,lb,ub){
     if (lb < ub){
-        var mid = Math.floor((lb + ub /2));
-        // var mid = lb+ parseInt((ub-lb)/2);
-        console.log(mid)
+        // var mid = Math.floor((lb + ub /2));
+        var mid = lb+ parseInt((ub-lb)/2);
+        // console.log(mid)
         merge_sort(a,lb,mid)
         merge_sort(a,mid+1,ub)
         merge(a,lb,mid,ub);
